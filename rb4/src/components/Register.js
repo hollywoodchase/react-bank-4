@@ -12,7 +12,9 @@ class Register extends React.Component {
     password: "",
     cpassword: "",
     successMsg: "",
-    errorMsg: "",
+    errorMsg: {
+      signin_error: ""
+    },
     isSubmitted: false,
   };
 
@@ -28,25 +30,33 @@ class Register extends React.Component {
     ];
 
     const allFieldsEntered = validateFields(fieldsToValidate);
+    console.log(allFieldsEntered);
     if (!allFieldsEntered) {
       this.setState({
         errorMsg: {
-          signin_error: "Please enter all the fields.",
-        },
+          signin_error: "Please enter all the fields."
+        }
       });
+      console.log(this.state);
     } else {
+      // console.log("password: " + password);
+      // console.log("cpassword: " + cpassword);
       if (password !== cpassword) {
         this.setState({
           errorMsg: {
-            signup_error: "Password and confirm password do not match",
-          },
+            signin_error: "Password and confirm password do not match"
+          }
         });
+        console.log("don't match");
+        console.log(this.state.errorMsg);
       } else {
         this.setState({
           errorMsg: {
-            signin_error: "",
-          },
+            signin_error: "All g"
+          }
         });
+        console.log("match");
+        console.log(this.state);
         // login successful
       }
     }
@@ -80,7 +90,7 @@ class Register extends React.Component {
               <Form.Label>First Name</Form.Label>
               <Form.Control
                 type="text"
-                name="last_name"
+                name="first_name"
                 placeholder="Enter First Name"
                 onChange={this.handleInputChange.bind(this)}
               ></Form.Control>
@@ -91,14 +101,14 @@ class Register extends React.Component {
                 placeholder="Enter Last Name"
                 onChange={this.handleInputChange.bind(this)}
               ></Form.Control>
-              <Form.Label>First Name</Form.Label>
+              <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
                 name="email"
                 placeholder="Enter Email"
                 onChange={this.handleInputChange.bind(this)}
               ></Form.Control>
-              <Form.Label>First Name</Form.Label>
+              <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
                 name="password"
